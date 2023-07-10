@@ -1,0 +1,48 @@
+**Команды запускаемые в Django shell**
+
+1. Создание пользователей 
+
+* u1 = User. objects. create_user (username= 'Eva')
+* u2 = User. objects. create_user (username= 'User2')
+
+2. Создание 2 объектов модели Author, связанные с пользователями
+
+* Author. objects.create (authorUser=u1)
+* Author. objects.create (authorUser=u2)
+
+3. Добавление 4 категорий  в модель Category. Каждой модели присваивается свой id по порядку. 
+
+* Category.objects .create (name= 'IT')
+* Category.objects .create (name= 'Technology')
+* Category.objects .create (name= 'AI')
+* Category.objects .create (name= 'GPT')
+
+4. Добавление 2 статей и 1 новости. Сначала указываем автора, потом тип поста, а после добавляем его заголовок и текст
+
+* Post. objects.create (author=author, categoryType= 'NW' title='title1', text='text1")
+* Post. objects.create (author=author, categoryType= 'AR' title='title2', text='text2")
+* Post. objects.create (author=author, categoryType= 'AR' title='title3', text='text3")
+
+5. Для присвоение категории указывается id поста, а после id категории
+
+* Post .objects.get(id=1).postCategory.add(Category.objects.get(id=1))
+
+6. Создание комментариев к объектам модели Post. Аналогично предыдущему указываем id поста, автора, а затем текст комментария. 
+
+* Comment. objects. create (commentPost=Post.objects.get(id=1), commentUser=Author.objects.get (id=1), text='text comment')
+
+7. Применение функций like() и dislike(). Указываем id комментария и применяем метод. 
+
+* Comment.objects.get(id=1).like()
+* Comment.objects.get (id=1).dislike()
+
+8. Обновить рейтинги пользователей. Указываем переменную и id пользователя, а затем применяем метод обновления рейтинга
+
+* a = Author.objects.get(id=1)
+* a. update_rating()
+* a. ratingAuthor
+
+9. Вывод username и рейтинг лучшего пользователя 
+
+* a = Author.objects.order_by('ratingAuthor') [ :1]
+*  a
